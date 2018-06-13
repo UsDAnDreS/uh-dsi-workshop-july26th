@@ -1,1 +1,1 @@
-# uh-dsi-workshop-June14th
+# uh-dsi-workshop
