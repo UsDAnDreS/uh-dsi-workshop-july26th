@@ -47,13 +47,13 @@ RUN conda install --quiet --yes \
     'r-networkD3=0.4*' \
     'r-png=0.1*' \
     'r-extrafont=0.17*' \
-    'r-ndtv=0.12*' \
+    'r-ndtv=0.1*' \
     'r-animation=2.5*' \
-    'r-networkDynamic=0.9*' \
-    'r-sna=2.4*' \            
-    'r-statnet.common=4.1*' \
+    'r-networkDynamic=0.*' \
+    'r-sna=2*' \            
+    'r-statnet.common=4*' \
     'r-network=1.13.0*' \
-    'r-igraph_1.2.1*' \
+    'r-igraph=1.2.1*' \
     'r-stringr=1.3*' \
     'r-readr=1.1*' \
     'r-hexbin=1.27*' && \
