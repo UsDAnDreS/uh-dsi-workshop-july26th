@@ -17,6 +17,10 @@ RUN apt-get update && \
 
 USER $NB_UID
 
+# Autoupdate notebooks https://github.com/data-8/nbgitpuller
+RUN pip install git+https://github.com/data-8/nbgitpuller && \
+    jupyter serverextension enable --py nbgitpuller
+
 # R packages
 RUN conda install --quiet --yes \
     'r-base=3.4.1' \
@@ -58,5 +62,4 @@ RUN conda install --quiet --yes \
     'r-readr=1.1*' \
     'r-hexbin=1.27*' && \
     conda clean -tipsy && \
-    fix-permissions $CONDA_DIR && \
-    jupyter serverextension enable --py nbgitpuller
+    fix-permissions $CONDA_DIR
