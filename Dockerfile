@@ -58,4 +58,5 @@ RUN conda install --quiet --yes \
     'r-readr=1.1*' \
     'r-hexbin=1.27*' && \
     conda clean -tipsy && \
-    fix-permissions $CONDA_DIR
+    fix-permissions $CONDA_DIR && \
+    jupyter serverextension enable --py nbgitpuller
