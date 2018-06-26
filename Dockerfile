@@ -12,6 +12,7 @@ RUN apt-get update && \
     fonts-dejavu \
     tzdata \
     gfortran \
+    openjdk-7-jdk \
     gcc && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -20,9 +21,6 @@ USER $NB_UID
 # Autoupdate notebooks https://github.com/data-8/nbgitpuller
 RUN pip install git+https://github.com/data-8/nbgitpuller && \
     jupyter serverextension enable --py nbgitpuller
-
-# Install Java
-RUN apt-get update && apt-get install -y --no-install-recommends openjdk-7-jdk && rm -rf /var/lib/apt/lists/* && apt-get clean
 
 
 # R packages
