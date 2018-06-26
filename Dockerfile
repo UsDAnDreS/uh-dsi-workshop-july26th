@@ -70,6 +70,7 @@ RUN apt-get clean
 
 ##### R: COMMON PACKAGES
 # To let R find Java
+ENV LD_LIBRARY_PATH /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server
 RUN R CMD javareconf
 
 # Install R packages
