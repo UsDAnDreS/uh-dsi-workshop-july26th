@@ -59,6 +59,7 @@ RUN conda install --quiet --yes \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
 
+USER root
 
 # For rJava
 RUN apt-get -y install libpcre++-dev
@@ -73,3 +74,4 @@ RUN R CMD javareconf
 # Install R packages
 RUN R -e "install.packages(c('rJava'), repos='http://cran.rstudio.com/')"
 
+USER $NB_UID
