@@ -62,8 +62,7 @@ RUN conda install --quiet --yes \
 USER root
 
 # For rJava
-RUN apt-get -y install libpcre++-dev
-RUN apt-get -y install openjdk-7-jdk
+RUN apt-get -y install openjdk-8-jdk
 
 RUN apt-get clean
 
