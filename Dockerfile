@@ -62,12 +62,8 @@ RUN conda install --quiet --yes \
     fix-permissions $CONDA_DIR
 
 ## add JAVA_HOME
-RUN echo 'JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /etc/environment
-RUN /bin/bash -c 'source /etc/environment'
-
-## configure JAVA and install rJava package
-RUN R CMD javareconf
-RUN R -e "install.packages('rJava', dependencies = TRUE, repos='https://cran.rstudio.com/')"
+RUN echo 'JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/environment
+RUN /bin/bash -c 'source ~/environment'
 
 
 # Configure Java for R
