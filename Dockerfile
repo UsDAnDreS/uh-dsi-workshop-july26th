@@ -56,8 +56,7 @@ RUN conda install --quiet --yes \
     'r-readxl=0.1*' \
     'r-rlist=0.4*' \
     'r-highcharter=0.5*' \
-    'r-irdisplay=0.5*' \
-    'r-tabulizer=0.2*' \
+    'r-irdisplay=0.4*' \
     'r-hexbin=1.27*' && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
