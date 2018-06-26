@@ -21,6 +21,10 @@ USER $NB_UID
 RUN pip install git+https://github.com/data-8/nbgitpuller && \
     jupyter serverextension enable --py nbgitpuller
 
+# Install Java
+RUN apt-get update && apt-get install -y --no-install-recommends openjdk-7-jdk && rm -rf /var/lib/apt/lists/* && apt-get clean
+
+
 # R packages
 RUN conda install --quiet --yes \
     'r-base=3.4.1' \
@@ -41,25 +45,26 @@ RUN conda install --quiet --yes \
     'r-htmltools=0.3*' \
     'r-sparklyr=0.7*' \
     'r-htmlwidgets=1.0*' \
-   # 'r-topicmodels=0.2*' \
     'r-ggplot2=2.2*' \
-   # 'r-tm=0.7*' \
-   # 'r-NLP=0.1*' \
-   # 'r-wordcloud=2.5*' \
     'r-RColorBrewer=1.1*' \
-   # 'r-SnowballC=0.5*' \
     'r-networkD3=0.4*' \
     'r-png=0.1*' \
     'r-extrafont=0.17*' \
-   # 'r-ndtv=0.1*' \
     'r-animation=2.5*' \
-   # 'r-networkDynamic=0.*' \
-   # 'r-sna=2*' \            
-   # 'r-statnet.common=4*' \
     'r-network=1.13.0*' \
     'r-igraph=1.2.1*' \
     'r-stringr=1.3*' \
     'r-readr=1.1*' \
+    'r-readxl=0.1*' \
+    'r-rlist=0.4*' \
+    'r-highcharter=0.5*' \
+    'r-irdisplay=0.5*' \
+    'r-tabulizer=0.2*' \
     'r-hexbin=1.27*' && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
+
+# Configure Java for R
+RUN R CMD javareconf
+RUN echo 'install.packages(c("rJava"),repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R && Rscript /tmp/packages.R
+
