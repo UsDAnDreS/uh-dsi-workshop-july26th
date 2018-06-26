@@ -68,5 +68,6 @@ RUN /bin/bash -c 'source ~/environment'
 
 # Configure Java for R
 RUN R CMD javareconf
-RUN echo 'install.packages(c("rJava"),repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R && Rscript /tmp/packages.R
+RUN install2.r --error rJava
+#RUN echo 'install.packages(c("rJava"),repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R && Rscript /tmp/packages.R
 
