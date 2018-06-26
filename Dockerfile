@@ -53,7 +53,7 @@ RUN conda install --quiet --yes \
     'r-igraph=1.2.1*' \
     'r-stringr=1.3*' \
     'r-readr=1.1*' \
-    'r-readxl=0.1*' \
+    'r-readxl=1.1*' \
     'r-rlist=0.4*' \
     'r-highcharter=0.5*' \
     'r-irdisplay=0.4*' \
