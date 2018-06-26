@@ -13,7 +13,6 @@ RUN apt-get update && \
     tzdata \
     gfortran \
     openjdk-8-jdk \
-    r-cran-rjava \
     gcc && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -69,6 +68,4 @@ RUN /bin/bash -c 'source ~/environment'
 
 # Configure Java for R
 RUN R CMD javareconf
-#RUN install2.r --error rJava
-#RUN echo 'install.packages(c("rJava"),repos="http://cran.us.r-project.org", dependencies=TRUE)' > /tmp/packages.R && Rscript /tmp/packages.R
 
