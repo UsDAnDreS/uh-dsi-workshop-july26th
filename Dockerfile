@@ -12,7 +12,7 @@ RUN apt-get update && \
     fonts-dejavu \
     tzdata \
     gfortran \
-    openjdk-7-jdk \
+    openjdk-8-jdk \
     gcc && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
