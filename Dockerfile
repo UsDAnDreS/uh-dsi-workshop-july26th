@@ -12,7 +12,6 @@ RUN apt-get update && \
     fonts-dejavu \
     tzdata \
     gfortran \
-    openjdk-8-jdk \
     gcc && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -21,7 +20,6 @@ USER $NB_UID
 # Autoupdate notebooks https://github.com/data-8/nbgitpuller
 RUN pip install git+https://github.com/data-8/nbgitpuller && \
     jupyter serverextension enable --py nbgitpuller
-
 
 # R packages
 RUN conda install --quiet --yes \
@@ -61,11 +59,17 @@ RUN conda install --quiet --yes \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
 
-## add JAVA_HOME
-RUN echo 'JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> ~/environment
-RUN /bin/bash -c 'source ~/environment'
 
+# For rJava
+RUN apt-get -y install libpcre++-dev
+RUN apt-get -y install openjdk-7-jdk
 
-# Configure Java for R
+RUN apt-get clean
+
+##### R: COMMON PACKAGES
+# To let R find Java
 RUN R CMD javareconf
+
+# Install R packages
+RUN R -e "install.packages(c('rJava'), repos='http://cran.rstudio.com/')"
 
