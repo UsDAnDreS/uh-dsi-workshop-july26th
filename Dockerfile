@@ -62,7 +62,9 @@ RUN conda install --quiet --yes \
 USER root
 
 # For rJava
-RUN apt-get -y install openjdk-8-jdk
+RUN apt-get update && apt-get install -y \
+    openjdk-8-jre \
+    openjdk-8-jdk 
 
 RUN apt-get clean
 
