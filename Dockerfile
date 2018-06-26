@@ -74,6 +74,6 @@ ENV LD_LIBRARY_PATH /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm
 RUN R CMD javareconf
 
 # Install R packages
-RUN R -e "install.packages(c('rJava'), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('rJava', 'tabulizer'), repos='http://cran.rstudio.com/')"
 
 USER $NB_UID
