@@ -33,15 +33,17 @@ RUN conda install --quiet --yes \
     'r-forecast=8.2*' \
     'r-rsqlite=2.0*' \
     'r-reshape2=1.4*' \
-    'r-nycflights13=0.2*' \
     'r-caret=6.0*' \
     'r-rcurl=1.95*' \
     'r-crayon=1.3*' \
     'r-randomforest=4.6*' \
     'r-htmltools=0.3*' \
     'r-sparklyr=0.7*' \
-    'r-htmlwidgets=1.0*' \
     'r-ggplot2=2.2*' \
+    'r-topicmodels=0.2*' \
+    'r-tm=0.7*' \
+    'r-NLP=0.1*' \
+    'r-wordcloud=2.5*' \
     'r-RColorBrewer=1.1*' \
     'r-networkD3=0.4*' \
     'r-png=0.1*' \
@@ -61,19 +63,10 @@ RUN conda install --quiet --yes \
 
 USER root
 
-# For rJava
-RUN apt-get update && apt-get install -y \
-    openjdk-8-jre \
-    openjdk-8-jdk 
-
 RUN apt-get clean
 
 ##### R: COMMON PACKAGES
-# To let R find Java
-ENV LD_LIBRARY_PATH /usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64/server
-RUN R CMD javareconf
 
 # Install R packages
-RUN R -e "install.packages(c('rJava', 'tabulizer'), repos='http://cran.rstudio.com/')"
 
 USER $NB_UID
