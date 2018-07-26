@@ -17,10 +17,6 @@ RUN apt-get update && \
 
 USER $NB_UID
 
-# Autoupdate notebooks https://github.com/data-8/nbgitpuller
-RUN pip install git+https://github.com/data-8/nbgitpuller && \
-    jupyter serverextension enable --py nbgitpuller
-
 # R packages
 RUN conda install --quiet --yes \
     'r-base=3.4.1' \
@@ -33,40 +29,14 @@ RUN conda install --quiet --yes \
     'r-forecast=8.2*' \
     'r-rsqlite=2.0*' \
     'r-reshape2=1.4*' \
+    'r-nycflights13=0.2*' \
     'r-caret=6.0*' \
     'r-rcurl=1.95*' \
     'r-crayon=1.3*' \
     'r-randomforest=4.6*' \
     'r-htmltools=0.3*' \
     'r-sparklyr=0.7*' \
-    'r-ggplot2=2.2*' \
-    'r-topicmodels=0.2*' \
-    'r-tm=0.7*' \
-    'r-NLP=0.1*' \
-    'r-wordcloud=2.5*' \
-    'r-RColorBrewer=1.1*' \
-    'r-networkD3=0.4*' \
-    'r-png=0.1*' \
-    'r-extrafont=0.17*' \
-    'r-animation=2.5*' \
-    'r-network=1.13.0*' \
-    'r-igraph=1.2.1*' \
-    'r-stringr=1.3*' \
-    'r-readr=1.1*' \
-    'r-readxl=1.1*' \
-    'r-rlist=0.4*' \
-    'r-highcharter=0.5*' \
-    'r-irdisplay=0.4*' \
+    'r-htmlwidgets=1.0*' \
     'r-hexbin=1.27*' && \
     conda clean -tipsy && \
     fix-permissions $CONDA_DIR
-
-USER root
-
-RUN apt-get clean
-
-##### R: COMMON PACKAGES
-
-# Install R packages
-
-USER $NB_UID
